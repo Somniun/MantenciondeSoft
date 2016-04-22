@@ -1,12 +1,65 @@
-*.class
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
+package ProyectoMantencion;
 
-# Mobile Tools for Java (J2ME)
-.mtj.tmp/
+import java.util.Scanner;
 
-# Package Files #
-*.jar
-*.war
-*.ear
+/**
+ *
+ * @author 19751553-8
+ */
+public class ProyectoMantencion {
 
-# virtual machine crash logs, see http://www.java.com/en/download/help/error_hotspot.xml
-hs_err_pid*
+    /**
+     * @param args the command line arguments
+     */
+    public static void main(String[] args) {
+        Scanner leer = new Scanner(System.in);
+        int resultado = 0;
+        int numero;
+        String numRomano;
+        int[] arreglo;
+        System.out.println("Ingrese numero romano (mayusculas)");
+        numRomano = leer.nextLine();
+        numero = numRomano.length();
+        arreglo = new int[numero + 1]; //el +1 es para que no cause error más adelante por "fuera de bordes"                      
+        for (int i = 0; i < numero; i++) {
+            char letra;
+            letra = numRomano.charAt(i);
+            if (letra == 'I') {
+                arreglo[i] = 1;
+            }
+            if (letra == 'V') {
+                arreglo[i] = 5;
+            }
+            if (letra == 'X') {
+                arreglo[i] = 10;
+            }
+            if (letra == 'L') {
+                arreglo[i] = 50;
+            }
+            if (letra == 'C') {
+                arreglo[i] = 100;
+            }
+            if (letra == 'D') {
+                arreglo[i] = 500;
+            }
+            if (letra == 'M') {
+                arreglo[i] = 1000;
+            }            
+        }
+        for (int i = 0; i < numero; i++) {
+            if (arreglo[i] < arreglo[i + 1]) {//comprobación si el numero a la izquierda es menor, entonces se resta
+                resultado = resultado + (arreglo[i + 1] - arreglo[i]);
+                i++;//se salta el siguiente numero
+            } else{
+                resultado = resultado + arreglo[i];//caso que no haya una resta, se suma el numero normalmente
+            }            
+        }//fin for
+        System.out.println("Su resultado es: " + resultado);
+    }
+
+    }
